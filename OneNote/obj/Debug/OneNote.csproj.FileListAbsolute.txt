@@ -1,0 +1,9 @@
+e:\temp\Onenote\OneNote\OneNote\bin\Debug\OneNote.exe.config
+e:\temp\Onenote\OneNote\OneNote\bin\Debug\OneNote.exe
+e:\temp\Onenote\OneNote\OneNote\bin\Debug\OneNote.pdb
+e:\temp\Onenote\OneNote\OneNote\obj\Debug\OneNote.csproj.AssemblyReference.cache
+e:\temp\Onenote\OneNote\OneNote\obj\Debug\OneNote.Properties.Resources.resources
+e:\temp\Onenote\OneNote\OneNote\obj\Debug\OneNote.csproj.GenerateResource.cache
+e:\temp\Onenote\OneNote\OneNote\obj\Debug\OneNote.csproj.CoreCompileInputs.cache
+e:\temp\Onenote\OneNote\OneNote\obj\Debug\OneNote.exe
+e:\temp\Onenote\OneNote\OneNote\obj\Debug\OneNote.pdb
