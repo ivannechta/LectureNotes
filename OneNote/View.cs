@@ -23,6 +23,8 @@ namespace OneNote
         {
             form = _f;
             Init();
+            OffsetCenter.X = +0.20f;
+            OffsetCenter.Y = +0.20f;
         }
         private int MouseCoord2PixelX(int _x) //x- mouse coord position, return coord on Form
         { 
@@ -45,10 +47,7 @@ namespace OneNote
         }
         public void Draw()
         {
-            form.Refresh();            
-            OffsetCenter.X = +0.25f;
-            OffsetCenter.Y = +0.3f;
-
+            form.Refresh();
             DrawDecartNet();
 
             float x1, y1;
@@ -58,22 +57,18 @@ namespace OneNote
             a = ElementCoord2PixelX(x1);
             b = ElementCoord2PixelY(y1);
             c = ElementCoord2PixelX(x1 + 0.1f);
-            d = ElementCoord2PixelY(y1 + 0.1f);
-            
+            d = ElementCoord2PixelY(y1 + 0.1f);            
 
             Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0));
             Graphics g = form.CreateGraphics();
 
             g.DrawLine(pen, a, b, c, d);
         }
-
-
         private void Init() 
         {
             CoordZero = new Point(form.Width / 2,form.Height/2);
             Zoom = 1.0f;
         }
-
         public void ScaleZoom() { Zoom *= 1.05f; Draw(); }
         public void ScaleDistance() { Zoom /= 1.05f; Draw(); }
         public void DrawDecartNet() 
@@ -83,7 +78,13 @@ namespace OneNote
             //abscissa
             g.DrawLine(pen, 0, CoordZero.Y, form.Width, CoordZero.Y);
             //ordinate
-            g.DrawLine(pen, CoordZero.X, 0, CoordZero.X, form.Height);            
+            g.DrawLine(pen, CoordZero.X, 0, CoordZero.X, form.Height);
+        }
+        public void MoveCanvas(int _dx,int _dy) 
+        {
+            OffsetCenter.X -= (1.0f/Zoom) * 0.5f * _dx / form.Width;
+            OffsetCenter.Y += (1.0f/Zoom) * 0.5f * _dy / form.Height;
+            Draw();
         }
     }
 }
