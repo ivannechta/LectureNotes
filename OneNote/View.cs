@@ -92,8 +92,8 @@ namespace OneNote
         }
         public void MoveCanvas(int _dx,int _dy) 
         {
-            OffsetCenter.X -= (1.0f/Zoom) * 0.5f * _dx / form.Width;
-            OffsetCenter.Y += (1.0f/Zoom) * 0.5f * _dy / form.Height;
+            OffsetCenter.X -= 4.0f*(1.0f/Zoom) * 0.5f * _dx / form.Width;
+            OffsetCenter.Y += 4.0f*(1.0f/Zoom) * 0.5f * _dy / form.Height;
             Draw();
         }
     }
