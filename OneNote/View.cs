@@ -37,12 +37,12 @@ namespace OneNote
             return _y - 20 - 10 - form.Top;
         }
 
-        public int ElementCoord2PixelX(double _x) //перевод кооддинат элементов в координаты на форме.
+        public int ElementCoord2PixelX(float _x) //перевод кооддинат элементов в координаты на форме.
         {
             int sizeX = form.Width / 2;
             return (int)(sizeX + 1.0f * sizeX * Zoom * (_x - OffsetCenter.X));
         }
-        public int ElementCoord2PixelY(double _y) //перевод кооддинат элементов в координаты на форме.
+        public int ElementCoord2PixelY(float _y) //перевод кооддинат элементов в координаты на форме.
         {
             int sizeY = form.Height / 2;
             return (int)(sizeY - (1.0f * sizeY * Zoom * (_y - OffsetCenter.Y)));

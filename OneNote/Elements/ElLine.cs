@@ -10,7 +10,7 @@ namespace OneNote.Elements
 {
     internal class ElLine: Element
     {
-        public double x2, y2;
+        public float x2, y2;
         public ElLine(ELEMENT_TYPES _t,Form1 _context):base(_t,_context)
         {}
 
@@ -24,15 +24,18 @@ namespace OneNote.Elements
 
         public override void Move(View v, int _x,int _y)
         {
+            float tmpX = v.PixelX2ElementCoord(_x);
+            float tmpY = v.PixelY2ElementCoord(_y);
             Graphics canvas = context.CreateGraphics();
             Pen pen = new Pen(SystemColors.Control);
-            canvas.DrawLine(pen, v.ElementCoord2PixelX(x1), v.ElementCoord2PixelY(y1), v.ElementCoord2PixelX(x2), v.ElementCoord2PixelY(y2));
-            
+            canvas.DrawLine(pen, v.ElementCoord2PixelX(x1), v.ElementCoord2PixelY(y1), 
+                                v.ElementCoord2PixelX(x2), v.ElementCoord2PixelY(y2));
+
             pen = new Pen(Color.FromArgb(255, 0, 0, 0));
-            canvas.DrawLine(pen, v.ElementCoord2PixelX(x1), v.ElementCoord2PixelY(y1), _x, _y);
-            
-            x2 = v.PixelX2ElementCoord(_x);
-            y2 = v.PixelY2ElementCoord(_y);
+            canvas.DrawLine(pen, v.ElementCoord2PixelX(x1), v.ElementCoord2PixelY(y1),
+                                    v.ElementCoord2PixelX(tmpX), v.ElementCoord2PixelY(tmpY));
+            x2 = tmpX;
+            y2 = tmpY;
         }
 
         public override void StartDraw(View v, int _x,int _y)

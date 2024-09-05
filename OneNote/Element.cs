@@ -17,8 +17,8 @@ namespace OneNote
         private readonly int ElementId;
         public readonly ELEMENT_TYPES elementType;
         protected readonly Form1 context;
-        public double x1, y1;
-        public Element(ELEMENT_TYPES t,Form1 _c) 
+        public float x1, y1;
+        public Element(ELEMENT_TYPES t,Form1 _c)
         {
             this.elementType = t;
             this.context = _c;
