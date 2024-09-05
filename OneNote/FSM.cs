@@ -5,7 +5,8 @@ namespace OneNote
 {
     public enum FSM_STATES
     {
-        FSM_STATE_ELEMENT_DRAW,
+        FSM_STATE_ELEMENT_READY_DRAW,   //Выбран пункт меню добавить линию
+        FSM_STATE_ELEMENT_DRAW,         //Начато рисование
         FSM_STATE_ELEMENT_PUT,
         FSM_STATE_ELEMENT_MOVE,
         FSM_STATE_ELEMENT_SELECT,
@@ -27,6 +28,12 @@ namespace OneNote
         public FSM_STATES State = FSM_STATES.FSM_STATE_IDLE;
         private Dictionary<FSM_STATES, Instance> AllStates = new Dictionary<FSM_STATES, Instance>()
         {
+            [FSM_STATES.FSM_STATE_ELEMENT_READY_DRAW] = new Instance()
+            {
+                name = "Рисуем элемент",
+                onEnter = Stub,
+                NextPosibleStates = new List<FSM_STATES> { FSM_STATES.FSM_STATE_IDLE, FSM_STATES.FSM_STATE_ELEMENT_DRAW }
+            },
             [FSM_STATES.FSM_STATE_ELEMENT_DRAW] = new Instance()
             {
                 name = "Рисуем элемент",
@@ -63,6 +70,7 @@ namespace OneNote
                 onEnter = Stub,
                 NextPosibleStates = new List<FSM_STATES> 
                 {
+                                                            FSM_STATES.FSM_STATE_ELEMENT_READY_DRAW,
                                                             FSM_STATES.FSM_STATE_ELEMENT_DRAW,
                                                             FSM_STATES.FSM_STATE_ELEMENT_PUT,
                                                             FSM_STATES.FSM_STATE_ELEMENT_MOVE,
