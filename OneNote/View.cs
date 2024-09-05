@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OneNote.Elements;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -26,7 +27,8 @@ namespace OneNote
         public View (Form1 _f)
         {
             form = _f;
-            Init();            
+            Init();
+            AddDecartNet();
         }
         private int MouseCoord2PixelX(int _x)   //x- mouse coord position, return coord on Form
         { 
@@ -57,12 +59,10 @@ namespace OneNote
             int sizeY = form.Height / 2;
             return -1.0f * (_y - sizeY) / sizeY / Zoom + OffsetCenter.Y;
         }
-
         public void Draw()
         {
             form.Refresh();
-            DrawDecartNet();
-            
+            UpdateDecartNet();
             foreach (Element el in allElements)
             {
                 el.Draw(this);
@@ -75,14 +75,20 @@ namespace OneNote
         }
         public void ScaleZoom() { Zoom *= 1.05f; Draw(); }
         public void ScaleDistance() { Zoom /= 1.05f; Draw(); }
-        public void DrawDecartNet() 
+        public void AddDecartNet()
         {
-            Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0));
-            Graphics g = form.CreateGraphics();
-            //abscissa
-            g.DrawLine(pen, 0, CoordZero.Y, form.Width, CoordZero.Y);
-            //ordinate
-            g.DrawLine(pen, CoordZero.X, 0, CoordZero.X, form.Height);
+            ElLine AxeX, AxeY;
+            AxeX = new ElLine(ELEMENT_TYPES.ELEMENT_TYPE_LINE, form);
+            AxeY = new ElLine(ELEMENT_TYPES.ELEMENT_TYPE_LINE, form);
+            allElements.Add(AxeX);
+            allElements.Add(AxeY);
+        }
+        public void UpdateDecartNet()
+        {
+            allElements[0].x1 = -1.0f/Zoom+OffsetCenter.X;
+            (allElements[0] as ElLine).x2 = 1.0f / Zoom + OffsetCenter.X;
+            allElements[1].y1 = -1.0f / Zoom + OffsetCenter.Y; ;
+            (allElements[1]as ElLine).y2 = 1.0f / Zoom+OffsetCenter.Y;
         }
         public void MoveCanvas(int _dx,int _dy) 
         {
