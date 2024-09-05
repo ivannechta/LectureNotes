@@ -13,7 +13,6 @@ namespace OneNote.Elements
         public float x2, y2;
         public ElLine(ELEMENT_TYPES _t,Form1 _context):base(_t,_context)
         {}
-
         public override void Draw(View v)
         {
             Graphics canvas = context.CreateGraphics();
@@ -21,7 +20,6 @@ namespace OneNote.Elements
             canvas.DrawLine(pen, v.ElementCoord2PixelX(x1), v.ElementCoord2PixelY(y1), 
                                  v.ElementCoord2PixelX(x2), v.ElementCoord2PixelY(y2));
         }
-
         public override void Move(View v, int _x,int _y)
         {
             float tmpX = v.PixelX2ElementCoord(_x);
@@ -37,11 +35,16 @@ namespace OneNote.Elements
             x2 = tmpX;
             y2 = tmpY;
         }
-
         public override void StartDraw(View v, int _x,int _y)
         {
             x1 = x2 = v.PixelX2ElementCoord(_x);
             y1 = y2 = v.PixelY2ElementCoord(_y);
+        }
+        public override void StopDraw(Form1 _form, View _v)
+        {
+            int a, b;
+            a = _v.ElementCoord2PixelX(x1);
+            b = _v.ElementCoord2PixelY(y1);
         }
     }
 }

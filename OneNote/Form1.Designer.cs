@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.Status = new System.Windows.Forms.ToolStripStatusLabel();
@@ -36,6 +37,7 @@
             this.элементыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьЭлементToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.линияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.текстовоеПолеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -90,17 +92,25 @@
             // добавитьЭлементToolStripMenuItem
             // 
             this.добавитьЭлементToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.линияToolStripMenuItem});
+            this.линияToolStripMenuItem,
+            this.текстовоеПолеToolStripMenuItem});
             this.добавитьЭлементToolStripMenuItem.Name = "добавитьЭлементToolStripMenuItem";
-            this.добавитьЭлементToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.добавитьЭлементToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.добавитьЭлементToolStripMenuItem.Text = "Добавить элемент";
             // 
             // линияToolStripMenuItem
             // 
             this.линияToolStripMenuItem.Name = "линияToolStripMenuItem";
-            this.линияToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.линияToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.линияToolStripMenuItem.Text = "Линия";
             this.линияToolStripMenuItem.Click += new System.EventHandler(this.линияToolStripMenuItem_Click);
+            // 
+            // текстовоеПолеToolStripMenuItem
+            // 
+            this.текстовоеПолеToolStripMenuItem.Name = "текстовоеПолеToolStripMenuItem";
+            this.текстовоеПолеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.текстовоеПолеToolStripMenuItem.Text = "Текстовое поле";
+            this.текстовоеПолеToolStripMenuItem.Click += new System.EventHandler(this.текстовоеПолеToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -110,9 +120,10 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Lecture Notes";
             this.Activated += new System.EventHandler(this.Form1_Activated);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
@@ -136,6 +147,7 @@
         private System.Windows.Forms.ToolStripMenuItem элементыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem добавитьЭлементToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem линияToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem текстовоеПолеToolStripMenuItem;
     }
 }
 

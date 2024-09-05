@@ -8,7 +8,8 @@ namespace OneNote
 {
     enum ELEMENT_TYPES
     { 
-        ELEMENT_TYPE_LINE,        
+        ELEMENT_TYPE_LINE,
+        ELEMENT_TYPE_TEXT,
     }
     struct ElementCounter {  internal static int TotalElements = 0; }
 
@@ -26,6 +27,7 @@ namespace OneNote
             ElementId = ElementCounter.TotalElements++;
         }
         public abstract void StartDraw(View v, int _x, int _y);
+        public abstract void StopDraw(Form1 _form, View _v);
         public abstract void Move(View v,int _x, int _y);
         public abstract void Draw(View v);
     }

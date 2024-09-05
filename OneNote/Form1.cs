@@ -1,6 +1,7 @@
 ﻿using OneNote.Elements;
 using System;
 using System.Drawing;
+using System.Runtime.Remoting.Contexts;
 using System.Windows.Forms;
 
 namespace OneNote
@@ -60,12 +61,14 @@ namespace OneNote
                     ShowStatus(fsm.GetName());
                     break;
                 case FSM_STATES.FSM_STATE_ELEMENT_DRAW:
+                    view.element.StopDraw(this,view);
                     view.allElements.Add(view.element);
                     fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
                     ShowStatus(fsm.GetName());
                     break;
                 default: break;
             };
+            view.Draw();
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
@@ -90,17 +93,24 @@ namespace OneNote
         {
             this.Status.Text = _message;
         }
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            view.Draw();
+        }
         private void линияToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
             fsm.SetState(FSM_STATES.FSM_STATE_ELEMENT_READY_DRAW);
             ShowStatus(fsm.GetName());            
             view.element = new ElLine(ELEMENT_TYPES.ELEMENT_TYPE_LINE,this);
-        }
+        }       
 
-        private void Form1_Activated(object sender, EventArgs e)
+        private void текстовоеПолеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            view.Draw();
-        }
+            fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
+            fsm.SetState(FSM_STATES.FSM_STATE_ELEMENT_READY_DRAW);
+            ShowStatus(fsm.GetName());
+            view.element = new ElText(ELEMENT_TYPES.ELEMENT_TYPE_LINE, this);            
+        }       
     }
 }
