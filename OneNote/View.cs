@@ -18,11 +18,12 @@ namespace OneNote
     internal class View
     {
         private Form1 form;
-        float Zoom; //масштаб приближения
+        public float Zoom; //масштаб приближения
         Point CoordZero; //где будет на форме координатная сетка
         FPoint OffsetCenter; //где будет находится центр экрана (с точки зрения координат элементов)        
         public Element element = null;
         public List<Element> allElements=new List<Element>();
+        public Element selectedElement = null;
 
         public View (Form1 _f)
         {
@@ -65,7 +66,7 @@ namespace OneNote
             UpdateDecartNet();
             foreach (Element el in allElements)
             {
-                el.Draw(this);
+                el.Draw(this,selectedElement==el);
             }
         }
         private void Init() 
@@ -95,6 +96,33 @@ namespace OneNote
             OffsetCenter.X -= 4.0f*(1.0f/Zoom) * 0.5f * _dx / form.Width;
             OffsetCenter.Y += 4.0f*(1.0f/Zoom) * 0.5f * _dy / form.Height;
             Draw();
+        }
+        private float distance(float _x0, float _y0,float _x1,float _y1,float _x2,float _y2)
+        {
+            float a = Math.Abs((_y2 - _y1) * _x0 - (_x2 - _x1) * _y0 + _x2 * _y1 - _y2 * _x1);
+            float b = (float)Math.Sqrt((_y2 - _y1) * (_y2 - _y1) + (_x2 - _x1) * (_x2 - _x1));
+            return a / b;
+        }
+        public bool TrySelectElement(int _x, int _y)
+        {
+            float a, b,d;
+            a = PixelX2ElementCoord(_x);
+            b = PixelY2ElementCoord(_y);
+            
+            foreach (Element el in allElements.Skip(2)) //пропустить оси
+            {
+                if (el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_LINE)
+                {
+                    d = distance(a, b, el.x1, el.y1, (el as ElLine).x2, (el as ElLine).y2);
+                    if (d < 0.01f / Zoom)
+                    {
+                        selectedElement = el;
+                        return true;
+                    }
+                }
+            }
+            selectedElement = null;
+            return false;
         }
     }
 }

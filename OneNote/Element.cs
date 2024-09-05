@@ -29,6 +29,6 @@ namespace OneNote
         public abstract void StartDraw(View v, int _x, int _y);
         public abstract void StopDraw(Form1 _form, View _v);
         public abstract void Move(View v,int _x, int _y);
-        public abstract void Draw(View v);
+        public abstract void Draw(View v, bool isSelected);
     }
 }

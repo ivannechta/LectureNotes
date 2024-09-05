@@ -13,8 +13,11 @@ namespace OneNote.Elements
     {
         public float x2, y2;        
         RichTextBox TextBox;
-        public ElText(ELEMENT_TYPES _t, Form1 _context) : base(_t, _context)
-        { }
+        private View view;
+        public ElText(ELEMENT_TYPES _t, Form1 _context,View _v) : base(_t, _context)
+        {
+            view = _v;
+        }
         private void DrawRect(Graphics _c,Pen _p, int _x1,int _y1, int _x2,int _y2)
         {
             _c.DrawLine(_p, _x1, _y1, _x1, _y2);
@@ -22,7 +25,7 @@ namespace OneNote.Elements
             _c.DrawLine(_p, _x1, _y1, _x2, _y1);
             _c.DrawLine(_p, _x1, _y2, _x2, _y2);
         }
-        public override void Draw(View v)
+        public override void Draw(View v, bool isSelected)
         {
             float tmp;
             int a, b, c, d;
@@ -34,7 +37,14 @@ namespace OneNote.Elements
             if (a > c) { tmp = x1; x1 = x2; x2 = tmp; }
             if (b > d) { tmp = y1; y1 = y2; y2 = tmp; }
 
-            TextBox.Location = new System.Drawing.Point(v.ElementCoord2PixelX(x1), v.ElementCoord2PixelY(y1));
+            if (isSelected) 
+            {
+                Graphics canvas = context.CreateGraphics();
+                Pen pen = new Pen(Color.FromArgb(255, 255, 0, 0));
+                DrawRect(canvas, pen, a - 20, b - 20, c + 20, d + 20);
+            }           
+
+            TextBox.Location = new System.Drawing.Point(a, b);
             TextBox.Size = new System.Drawing.Size(c - a, d - b);
         }
         public override void Move(View v, int _x, int _y)
@@ -72,9 +82,16 @@ namespace OneNote.Elements
             TextBox = new RichTextBox
             {
                 Location = new System.Drawing.Point(_v.ElementCoord2PixelX(x1), _v.ElementCoord2PixelY(y1)),
-                Size = new System.Drawing.Size(c - a, d - b)
+                Size = new System.Drawing.Size(c - a, d - b),
             };
+            TextBox.MouseDown += TextBox_MouseDown;
             _form.Controls.Add(TextBox);
+        }
+
+        private void TextBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            view.selectedElement = this;
+            view.Draw();
         }
     }
 }

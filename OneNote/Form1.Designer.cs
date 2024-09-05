@@ -95,20 +95,20 @@
             this.линияToolStripMenuItem,
             this.текстовоеПолеToolStripMenuItem});
             this.добавитьЭлементToolStripMenuItem.Name = "добавитьЭлементToolStripMenuItem";
-            this.добавитьЭлементToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.добавитьЭлементToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.добавитьЭлементToolStripMenuItem.Text = "Добавить элемент";
             // 
             // линияToolStripMenuItem
             // 
             this.линияToolStripMenuItem.Name = "линияToolStripMenuItem";
-            this.линияToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.линияToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.линияToolStripMenuItem.Text = "Линия";
             this.линияToolStripMenuItem.Click += new System.EventHandler(this.линияToolStripMenuItem_Click);
             // 
             // текстовоеПолеToolStripMenuItem
             // 
             this.текстовоеПолеToolStripMenuItem.Name = "текстовоеПолеToolStripMenuItem";
-            this.текстовоеПолеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.текстовоеПолеToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.текстовоеПолеToolStripMenuItem.Text = "Текстовое поле";
             this.текстовоеПолеToolStripMenuItem.Click += new System.EventHandler(this.текстовоеПолеToolStripMenuItem_Click);
             // 

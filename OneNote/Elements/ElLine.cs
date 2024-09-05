@@ -13,10 +13,20 @@ namespace OneNote.Elements
         public float x2, y2;
         public ElLine(ELEMENT_TYPES _t,Form1 _context):base(_t,_context)
         {}
-        public override void Draw(View v)
+        public override void Draw(View v,bool isSelected)
         {
             Graphics canvas = context.CreateGraphics();
-            Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0));
+
+            Pen pen;
+            if (isSelected) 
+            { 
+                pen = new Pen(Color.FromArgb(255, 255, 0, 0)); 
+            }
+            else
+            {
+                pen = new Pen(Color.FromArgb(255, 0, 0, 0));
+            }
+
             canvas.DrawLine(pen, v.ElementCoord2PixelX(x1), v.ElementCoord2PixelY(y1), 
                                  v.ElementCoord2PixelX(x2), v.ElementCoord2PixelY(y2));
         }

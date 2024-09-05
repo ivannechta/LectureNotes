@@ -39,6 +39,10 @@ namespace OneNote
                 case FSM_STATES.FSM_STATE_IDLE:
                     coordMouseDown.X = e.X; coordMouseDown.Y = e.Y;
                     fsm.SetState(FSM_STATES.FSM_STATE_CANVAS_MOVE);
+                    if (view.TrySelectElement(e.X, e.Y))
+                    {
+                        fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
+                    }
                     break;
                 case FSM_STATES.FSM_STATE_ELEMENT_READY_DRAW:
                     ShowStatus("" + e.X + "- " + e.Y);
@@ -110,7 +114,7 @@ namespace OneNote
             fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
             fsm.SetState(FSM_STATES.FSM_STATE_ELEMENT_READY_DRAW);
             ShowStatus(fsm.GetName());
-            view.element = new ElText(ELEMENT_TYPES.ELEMENT_TYPE_LINE, this);            
-        }       
+            view.element = new ElText(ELEMENT_TYPES.ELEMENT_TYPE_TEXT, this,view);
+        }
     }
 }
