@@ -43,9 +43,12 @@ namespace OneNote
                     {
                         fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
                     }
+                    else 
+                    {
+                        ShowStatus(fsm.GetName());
+                    }
                     break;
                 case FSM_STATES.FSM_STATE_ELEMENT_READY_DRAW:
-                    ShowStatus("" + e.X + "- " + e.Y);
                     view.element.StartDraw(view, e.X, e.Y);
                     fsm.SetState(FSM_STATES.FSM_STATE_ELEMENT_DRAW);
                     break;
@@ -115,6 +118,24 @@ namespace OneNote
             fsm.SetState(FSM_STATES.FSM_STATE_ELEMENT_READY_DRAW);
             ShowStatus(fsm.GetName());
             view.element = new ElText(ELEMENT_TYPES.ELEMENT_TYPE_TEXT, this,view);
+        }
+
+        private void DeleteElementMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Element el in view.allElements)
+            {
+                if (el.Equals(view.selectedElement))
+                {
+                    view.allElements.Remove(el);
+                    if (el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_TEXT)
+                    {
+                        this.Controls.Remove((el as ElText).TextBox);
+                        (el as ElText).TextBox.Dispose();
+                    }
+                    view.Draw();
+                    return;
+                }
+            }            
         }
     }
 }

@@ -11,8 +11,8 @@ namespace OneNote.Elements
 {
     internal class ElText:Element
     {
-        public float x2, y2;        
-        RichTextBox TextBox;
+        public float x2, y2; 
+        public RichTextBox TextBox;
         private View view;
         public ElText(ELEMENT_TYPES _t, Form1 _context,View _v) : base(_t, _context)
         {
@@ -91,6 +91,7 @@ namespace OneNote.Elements
         private void TextBox_MouseDown(object sender, MouseEventArgs e)
         {
             view.selectedElement = this;
+            context.DeleteElementMenuItem.Enabled = true;
             view.Draw();
         }
     }

@@ -17,10 +17,10 @@ namespace OneNote
     };
     internal class View
     {
-        private Form1 form;
+        public  Form1 form;
         public float Zoom; //масштаб приближения
         Point CoordZero; //где будет на форме координатная сетка
-        FPoint OffsetCenter; //где будет находится центр экрана (с точки зрения координат элементов)        
+        FPoint OffsetCenter; //где будет находится центр экрана (с точки зрения координат элементов)
         public Element element = null;
         public List<Element> allElements=new List<Element>();
         public Element selectedElement = null;
@@ -117,11 +117,13 @@ namespace OneNote
                     if (d < 0.01f / Zoom)
                     {
                         selectedElement = el;
+                        form.DeleteElementMenuItem.Enabled = true;
                         return true;
                     }
                 }
             }
             selectedElement = null;
+            form.DeleteElementMenuItem.Enabled = false;
             return false;
         }
     }
