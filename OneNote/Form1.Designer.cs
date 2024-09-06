@@ -97,20 +97,22 @@
             this.линияToolStripMenuItem,
             this.текстовоеПолеToolStripMenuItem});
             this.добавитьЭлементToolStripMenuItem.Name = "добавитьЭлементToolStripMenuItem";
-            this.добавитьЭлементToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.добавитьЭлементToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.добавитьЭлементToolStripMenuItem.Text = "Добавить элемент";
             // 
             // линияToolStripMenuItem
             // 
             this.линияToolStripMenuItem.Name = "линияToolStripMenuItem";
-            this.линияToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.линияToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
+            this.линияToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.линияToolStripMenuItem.Text = "Линия";
             this.линияToolStripMenuItem.Click += new System.EventHandler(this.линияToolStripMenuItem_Click);
             // 
             // текстовоеПолеToolStripMenuItem
             // 
             this.текстовоеПолеToolStripMenuItem.Name = "текстовоеПолеToolStripMenuItem";
-            this.текстовоеПолеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.текстовоеПолеToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.T)));
+            this.текстовоеПолеToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.текстовоеПолеToolStripMenuItem.Text = "Текстовое поле";
             this.текстовоеПолеToolStripMenuItem.Click += new System.EventHandler(this.текстовоеПолеToolStripMenuItem_Click);
             // 
@@ -118,7 +120,8 @@
             // 
             this.DeleteElementMenuItem.Enabled = false;
             this.DeleteElementMenuItem.Name = "DeleteElementMenuItem";
-            this.DeleteElementMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteElementMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.DeleteElementMenuItem.Size = new System.Drawing.Size(191, 22);
             this.DeleteElementMenuItem.Text = "Удалить элемент";
             this.DeleteElementMenuItem.Click += new System.EventHandler(this.DeleteElementMenuItem_Click);
             // 
