@@ -64,9 +64,14 @@ namespace OneNote
         {
             form.Refresh();
             UpdateDecartNet();
-            foreach (Element el in allElements)
+
+            foreach (Element el in allElements.Take(2))
             {
-                el.Draw(this,selectedElement==el);
+                el.Draw(this, selectedElement == el, true);
+            }
+            foreach (Element el in allElements.Skip(2))
+            {
+                el.Draw(this,selectedElement==el, false);
             }
         }
         private void Init() 

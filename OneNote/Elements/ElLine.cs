@@ -13,18 +13,25 @@ namespace OneNote.Elements
         public float x2, y2;
         public ElLine(ELEMENT_TYPES _t,Form1 _context):base(_t,_context)
         {}
-        public override void Draw(View v,bool isSelected)
+        public override void Draw(View v,bool isSelected, bool isAxes)
         {
             Graphics canvas = context.CreateGraphics();
 
             Pen pen;
-            if (isSelected) 
-            { 
-                pen = new Pen(Color.FromArgb(255, 255, 0, 0)); 
+            if (isSelected)
+            {
+                pen = new Pen(ColorPalette.Selection());
             }
             else
             {
-                pen = new Pen(Color.FromArgb(255, 0, 0, 0));
+                if (isAxes)
+                { 
+                    pen = new Pen(ColorPalette.Axes());
+                }
+                else
+                {
+                    pen = new Pen(ColorPalette.Line());
+                }
             }
 
             canvas.DrawLine(pen, v.ElementCoord2PixelX(x1), v.ElementCoord2PixelY(y1), 
@@ -35,11 +42,11 @@ namespace OneNote.Elements
             float tmpX = v.PixelX2ElementCoord(_x);
             float tmpY = v.PixelY2ElementCoord(_y);
             Graphics canvas = context.CreateGraphics();
-            Pen pen = new Pen(SystemColors.Control);
+            Pen pen = new Pen(ColorPalette.BackGround());
             canvas.DrawLine(pen, v.ElementCoord2PixelX(x1), v.ElementCoord2PixelY(y1), 
                                 v.ElementCoord2PixelX(x2), v.ElementCoord2PixelY(y2));
 
-            pen = new Pen(Color.FromArgb(255, 0, 0, 0));
+            pen = new Pen(ColorPalette.Line());
             canvas.DrawLine(pen, v.ElementCoord2PixelX(x1), v.ElementCoord2PixelY(y1),
                                     v.ElementCoord2PixelX(tmpX), v.ElementCoord2PixelY(tmpY));
             x2 = tmpX;

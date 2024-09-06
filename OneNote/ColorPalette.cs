@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OneNote
+{
+    internal static class ColorPalette
+    {
+        public static Color Axes() 
+        {
+            return Color.FromArgb(255, 0, 0, 0);
+        }
+        public static Color Line()
+        {
+            return Color.FromArgb(255, 0, 0, 255);
+        }
+        public static Color Text()
+        {
+            return Color.FromArgb(255, 0, 0, 0);
+        }
+        public static Color Selection()
+        {
+            return Color.FromArgb(255, 255, 0, 255);
+        }
+        public static Color BackGround()
+        {
+            return SystemColors.Control; 
+        }
+    }
+}

@@ -25,7 +25,7 @@ namespace OneNote.Elements
             _c.DrawLine(_p, _x1, _y1, _x2, _y1);
             _c.DrawLine(_p, _x1, _y2, _x2, _y2);
         }
-        public override void Draw(View v, bool isSelected)
+        public override void Draw(View v, bool isSelected, bool isAxes)
         {
             float tmp;
             int a, b, c, d;
@@ -40,7 +40,7 @@ namespace OneNote.Elements
             if (isSelected) 
             {
                 Graphics canvas = context.CreateGraphics();
-                Pen pen = new Pen(Color.FromArgb(255, 255, 0, 0));
+                Pen pen = new Pen(ColorPalette.Selection());
                 DrawRect(canvas, pen, a - 20, b - 20, c + 20, d + 20);
             }           
 
@@ -52,11 +52,11 @@ namespace OneNote.Elements
             float tmpX = v.PixelX2ElementCoord(_x);
             float tmpY = v.PixelY2ElementCoord(_y);
             Graphics canvas = context.CreateGraphics();
-            Pen pen = new Pen(SystemColors.Control);
+            Pen pen = new Pen(ColorPalette.BackGround());
             DrawRect(canvas, pen, v.ElementCoord2PixelX(x1), v.ElementCoord2PixelY(y1),
                                 v.ElementCoord2PixelX(x2), v.ElementCoord2PixelY(y2));
 
-            pen = new Pen(Color.FromArgb(255, 0, 0, 0));
+            pen = new Pen(ColorPalette.Text());
             DrawRect(canvas, pen, v.ElementCoord2PixelX(x1), v.ElementCoord2PixelY(y1),
                                     v.ElementCoord2PixelX(tmpX), v.ElementCoord2PixelY(tmpY));
             x2 = tmpX;

@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorPalette.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="Elements\ElLine.cs" />
     <Compile Include="Elements\ElText.cs" />
