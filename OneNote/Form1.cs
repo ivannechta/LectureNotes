@@ -143,5 +143,32 @@ namespace OneNote
             view.Zoom = 1.0f;
             view.Draw();
         }
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            view.Draw();
+        }
+        private void открытьПроектToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                view.NewProject();
+                view.Load(openFileDialog1.FileName);
+            }
+        }
+        private void сохранитьПроектToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                view.Save(saveFileDialog1.FileName);
+            }
+        }
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void новыйПроектToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            view.NewProject();
+        }
     }
 }

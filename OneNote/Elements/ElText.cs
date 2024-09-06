@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -93,6 +94,37 @@ namespace OneNote.Elements
             view.selectedElement = this;
             context.DeleteElementMenuItem.Enabled = true;
             view.Draw();
+        }
+        public override void Save(FileStream _fs)
+        {
+            _fs.Write(BitConverter.GetBytes(x1), 0, sizeof(float));
+            _fs.Write(BitConverter.GetBytes(y1), 0, sizeof(float));
+            _fs.Write(BitConverter.GetBytes(x2), 0, sizeof(float));
+            _fs.Write(BitConverter.GetBytes(y2), 0, sizeof(float));
+            _fs.Write(BitConverter.GetBytes(TextBox.Rtf.Length), 0, IntPtr.Size);
+            _fs.Write(Encoding.ASCII.GetBytes(TextBox.Rtf), 0, TextBox.Rtf.Length);
+        }
+        public override void Load(FileStream _fs)
+        {
+            byte[] fileData = new byte[sizeof(float)];
+            int size = 0;
+            _fs.Read(fileData, 0, sizeof(float));
+            x1 = BitConverter.ToSingle(fileData, 0);
+            _fs.Read(fileData, 0, sizeof(float));
+            y1 = BitConverter.ToSingle(fileData, 0);
+            _fs.Read(fileData, 0, sizeof(float));
+            x2 = BitConverter.ToSingle(fileData, 0);
+            _fs.Read(fileData, 0, sizeof(float));
+            y2 = BitConverter.ToSingle(fileData, 0);
+
+            fileData = new byte[IntPtr.Size];
+            _fs.Read(fileData, 0, IntPtr.Size);
+            size = BitConverter.ToInt32(fileData, 0);
+
+            fileData = new byte[size];
+            _fs.Read(fileData, 0, size);
+            StopDraw(context,view);
+            TextBox.Rtf = Encoding.Default.GetString(fileData);
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +20,7 @@ namespace OneNote
     {
         public  Form1 form;
         public float Zoom; //масштаб приближения
-        Point CoordZero; //где будет на форме координатная сетка
-        FPoint OffsetCenter; //где будет находится центр экрана (с точки зрения координат элементов)
+        public FPoint OffsetCenter; //где будет находится центр экрана (с точки зрения координат элементов)
         public Element element = null;
         public List<Element> allElements=new List<Element>();
         public Element selectedElement = null;
@@ -76,7 +76,6 @@ namespace OneNote
         }
         private void Init() 
         {
-            CoordZero = new Point(form.Width / 2, form.Height / 2);
             Zoom = 1.0f;
         }
         public void ScaleZoom() { Zoom *= 1.05f; Draw(); }
@@ -130,6 +129,70 @@ namespace OneNote
             selectedElement = null;
             form.DeleteElementMenuItem.Enabled = false;
             return false;
+        }
+        public void Load(String _fileName)
+        {
+            byte[] fileData = null;
+            int type;
+            Element el = null;
+            allElements.Clear();
+            AddDecartNet();
+
+            using (FileStream fs = File.OpenRead(_fileName))
+            {
+                using (BinaryReader binaryReader = new BinaryReader(fs))
+                {
+                    while (fs.Position != fs.Length) {
+                        fileData = binaryReader.ReadBytes(IntPtr.Size);
+                        type= BitConverter.ToInt32(fileData, 0);
+                        switch ((ELEMENT_TYPES)type) 
+                        {
+                            case ELEMENT_TYPES.ELEMENT_TYPE_LINE:
+                                el = new ElLine(ELEMENT_TYPES.ELEMENT_TYPE_LINE, form);
+                            break;
+                            case ELEMENT_TYPES.ELEMENT_TYPE_TEXT:
+                                el = new ElText(ELEMENT_TYPES.ELEMENT_TYPE_TEXT, form, this);
+                                break;
+                            default:
+                                
+                                break;
+                        }
+                        el.Load(fs);
+                        allElements.Add(el);
+                        Draw();
+                    }
+                }
+            } 
+        }
+        public void Save(String _fileName)
+        {
+            using (FileStream fs = File.OpenWrite(_fileName))
+            {
+                using (BinaryWriter binaryWriter = new BinaryWriter(fs))
+                {
+                    foreach(Element el in allElements.Skip(2))
+                    {
+                        fs.Write(BitConverter.GetBytes((int)el.elementType),0,4); // Type
+                        el.Save(fs);
+                    }
+                }
+                fs.Close();
+            }
+        }
+        public void NewProject()
+        {
+            foreach (Element el in allElements.Skip(2))
+            {
+                if (el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_TEXT)
+                {
+                    (el as ElText).TextBox.Dispose();
+                }
+            }
+            allElements.Clear();
+            AddDecartNet();
+            Draw();
+            Zoom = 1;
+            OffsetCenter.X = OffsetCenter.Y = 0;
         }
     }
 }

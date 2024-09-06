@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,5 +31,7 @@ namespace OneNote
         public abstract void StopDraw(Form1 _form, View _v);
         public abstract void Move(View v,int _x, int _y);
         public abstract void Draw(View v, bool isSelected,bool isAxes);
+        public abstract void Save(FileStream _fs);
+        public abstract void Load(FileStream _fs);
     }
 }

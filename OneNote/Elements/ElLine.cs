@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,6 +63,25 @@ namespace OneNote.Elements
             int a, b;
             a = _v.ElementCoord2PixelX(x1);
             b = _v.ElementCoord2PixelY(y1);
+        }
+        public override void Save(FileStream _fs) 
+        {
+            _fs.Write(BitConverter.GetBytes(x1), 0, sizeof(float));
+            _fs.Write(BitConverter.GetBytes(y1), 0, sizeof(float));
+            _fs.Write(BitConverter.GetBytes(x2), 0, sizeof(float));
+            _fs.Write(BitConverter.GetBytes(y2), 0, sizeof(float));
+        }
+        public override void Load(FileStream _fs)
+        {
+            byte[] fileData = new byte[sizeof(float)];
+            _fs.Read(fileData, 0, sizeof(float));
+            x1 = BitConverter.ToSingle(fileData, 0);
+            _fs.Read(fileData, 0, sizeof(float));
+            y1 = BitConverter.ToSingle(fileData, 0);
+            _fs.Read(fileData, 0, sizeof(float));
+            x2 = BitConverter.ToSingle(fileData, 0);
+            _fs.Read(fileData, 0, sizeof(float));
+            y2 = BitConverter.ToSingle(fileData, 0);
         }
     }
 }
