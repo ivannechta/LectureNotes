@@ -133,9 +133,15 @@ namespace OneNote
                         (el as ElText).TextBox.Dispose();
                     }
                     view.Draw();
+                    DeleteElementMenuItem.Enabled = false;
                     return;
                 }
             }            
+        }
+        private void сбросМасштабаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            view.Zoom = 1.0f;
+            view.Draw();
         }
     }
 }

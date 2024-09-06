@@ -39,6 +39,8 @@
             this.линияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.текстовоеПолеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteElementMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сбросМасштабаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -69,6 +71,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
+            this.видToolStripMenuItem,
             this.элементыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -125,6 +128,21 @@
             this.DeleteElementMenuItem.Text = "Удалить элемент";
             this.DeleteElementMenuItem.Click += new System.EventHandler(this.DeleteElementMenuItem_Click);
             // 
+            // видToolStripMenuItem
+            // 
+            this.видToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сбросМасштабаToolStripMenuItem});
+            this.видToolStripMenuItem.Name = "видToolStripMenuItem";
+            this.видToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.видToolStripMenuItem.Text = "Вид";
+            // 
+            // сбросМасштабаToolStripMenuItem
+            // 
+            this.сбросМасштабаToolStripMenuItem.Name = "сбросМасштабаToolStripMenuItem";
+            this.сбросМасштабаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сбросМасштабаToolStripMenuItem.Text = "Сброс масштаба";
+            this.сбросМасштабаToolStripMenuItem.Click += new System.EventHandler(this.сбросМасштабаToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,6 +180,8 @@
         private System.Windows.Forms.ToolStripMenuItem линияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem текстовоеПолеToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem DeleteElementMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem видToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сбросМасштабаToolStripMenuItem;
     }
 }
 
