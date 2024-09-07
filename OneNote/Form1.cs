@@ -30,7 +30,8 @@ namespace OneNote
             else //прокрутили вверх
             {
                 view.ScaleZoom();
-            }            
+            }
+            ShowStatus(fsm.GetName());
         }
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {            
@@ -56,7 +57,6 @@ namespace OneNote
                 default: break;
             };
         }
-
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
             switch (fsm.GetState())
@@ -77,7 +77,6 @@ namespace OneNote
             };
             view.Draw();
         }
-
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
             switch (fsm.GetState())
@@ -94,11 +93,11 @@ namespace OneNote
                 default:
                     break;
             };
-
         }
-        private void ShowStatus(String _message)
+        public void ShowStatus(String _message)
         {
             this.Status.Text = _message;
+            this.toolStripScale.Text = ""+view.Zoom;
         }
         private void Form1_Activated(object sender, EventArgs e)
         {
@@ -108,10 +107,9 @@ namespace OneNote
         {
             fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
             fsm.SetState(FSM_STATES.FSM_STATE_ELEMENT_READY_DRAW);
-            ShowStatus(fsm.GetName());            
+            ShowStatus(fsm.GetName());
             view.element = new ElLine(ELEMENT_TYPES.ELEMENT_TYPE_LINE,this);
-        }       
-
+        }
         private void текстовоеПолеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
@@ -119,7 +117,6 @@ namespace OneNote
             ShowStatus(fsm.GetName());
             view.element = new ElText(ELEMENT_TYPES.ELEMENT_TYPE_TEXT, this,view);
         }
-
         private void DeleteElementMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Element el in view.allElements)
@@ -142,6 +139,7 @@ namespace OneNote
         {
             view.Zoom = 1.0f;
             view.Draw();
+            ShowStatus(fsm.GetName());
         }
         private void Form1_Resize(object sender, EventArgs e)
         {
@@ -169,6 +167,7 @@ namespace OneNote
         private void новыйПроектToolStripMenuItem_Click(object sender, EventArgs e)
         {
             view.NewProject();
+            ShowStatus(fsm.GetName());
         }
     }
 }
