@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,6 +25,7 @@ namespace OneNote
         public Element element = null;
         public List<Element> allElements=new List<Element>();
         public Element selectedElement = null;
+        public bool allowTextBoxMoveing = false;
 
         public View (Form1 _f)
         {
@@ -128,15 +130,34 @@ namespace OneNote
             ElementWasDeselected();
             return false;
         }
+        public void MoveElementStart() { 
+            if ((selectedElement != null) &&(allowTextBoxMoveing))
+            {       
+                (selectedElement as ElText).FlagTextBoxMoveing = true;
+            }
+        }
+        public void MoveElementStop()
+        {
+            if (selectedElement != null)
+            {
+                (selectedElement as ElText).FlagTextBoxMoveing = false;
+            }
+        }
         public void ElementWasSelected(Element _el) 
         {
             selectedElement = _el;
             form.DeleteElementMenuItem.Enabled = true;
+            if (_el.elementType==ELEMENT_TYPES.ELEMENT_TYPE_TEXT) 
+            {
+                form.MoveElementStripMenuItem.Enabled = true;
+            }
         }
         public void ElementWasDeselected()
         {
             selectedElement = null;
-            form.DeleteElementMenuItem.Enabled = false;
+            form.DeleteElementMenuItem.Enabled = false;            
+            form.MoveElementStripMenuItem.Enabled = false;
+            allowTextBoxMoveing = false;
         }
         public void Load(String _fileName)
         {

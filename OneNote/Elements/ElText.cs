@@ -16,7 +16,7 @@ namespace OneNote.Elements
     {
         public float x2, y2; 
         public RichTextBox TextBox;
-        private bool FlagTextBoxMoveing = false;
+        public bool FlagTextBoxMoveing = false;
         private Point OldCursorPosition = new Point();
         private readonly View view;
 
@@ -99,15 +99,19 @@ namespace OneNote.Elements
         }
         private void TextBox_MouseDown(object sender, MouseEventArgs e)
         {
-            FlagTextBoxMoveing = true;
             OldCursorPosition.X = e.X;
-            OldCursorPosition.Y = e.Y;     
+            OldCursorPosition.Y = e.Y;
+            FlagTextBoxMoveing = false;
+            view.MoveElementStart();
         }
         private void TextBox_MouseUp(object sender, MouseEventArgs e)
         {
             FlagTextBoxMoveing = false;
-            view.selectedElement = this;
+            //context.MoveElementStripMenuItem.Enabled = true;
+            //view.selectedElement = this;
+            view.ElementWasSelected(this);
             context.DeleteElementMenuItem.Enabled = true;
+            view.MoveElementStop();
             view.Draw();
         }
         private void TextBox_MouseMove(object sender, MouseEventArgs e)

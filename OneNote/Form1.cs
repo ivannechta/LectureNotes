@@ -169,5 +169,10 @@ namespace OneNote
             view.NewProject();
             ShowStatus(fsm.GetName());
         }
+
+        private void переместитьЭлементToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            view.allowTextBoxMoveing = true;
+        }
     }
 }

@@ -50,6 +50,7 @@
             this.DeleteElementMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.MoveElementStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +84,7 @@
             this.toolStripStatusLabel2.AutoSize = false;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(80, 17);
-            this.toolStripStatusLabel2.Text = "Маштаб:";
+            this.toolStripStatusLabel2.Text = "Масштаб:";
             this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // toolStripScale
@@ -163,7 +164,7 @@
             // сбросМасштабаToolStripMenuItem
             // 
             this.сбросМасштабаToolStripMenuItem.Name = "сбросМасштабаToolStripMenuItem";
-            this.сбросМасштабаToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.сбросМасштабаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.сбросМасштабаToolStripMenuItem.Text = "Сброс масштаба";
             this.сбросМасштабаToolStripMenuItem.Click += new System.EventHandler(this.сбросМасштабаToolStripMenuItem_Click);
             // 
@@ -171,7 +172,8 @@
             // 
             this.элементыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.добавитьЭлементToolStripMenuItem,
-            this.DeleteElementMenuItem});
+            this.DeleteElementMenuItem,
+            this.MoveElementStripMenuItem});
             this.элементыToolStripMenuItem.Name = "элементыToolStripMenuItem";
             this.элементыToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
             this.элементыToolStripMenuItem.Text = "Элементы";
@@ -182,7 +184,7 @@
             this.линияToolStripMenuItem,
             this.текстовоеПолеToolStripMenuItem});
             this.добавитьЭлементToolStripMenuItem.Name = "добавитьЭлементToolStripMenuItem";
-            this.добавитьЭлементToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.добавитьЭлементToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.добавитьЭлементToolStripMenuItem.Text = "Добавить элемент";
             // 
             // линияToolStripMenuItem
@@ -205,8 +207,8 @@
             // 
             this.DeleteElementMenuItem.Enabled = false;
             this.DeleteElementMenuItem.Name = "DeleteElementMenuItem";
-            this.DeleteElementMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.DeleteElementMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.DeleteElementMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
+            this.DeleteElementMenuItem.Size = new System.Drawing.Size(240, 22);
             this.DeleteElementMenuItem.Text = "Удалить элемент";
             this.DeleteElementMenuItem.Click += new System.EventHandler(this.DeleteElementMenuItem_Click);
             // 
@@ -220,6 +222,15 @@
             // 
             this.openFileDialog1.DefaultExt = "*.lnt";
             this.openFileDialog1.Filter = "Lecture Notes|*.lnt";
+            // 
+            // MoveElementStripMenuItem
+            // 
+            this.MoveElementStripMenuItem.Enabled = false;
+            this.MoveElementStripMenuItem.Name = "MoveElementStripMenuItem";
+            this.MoveElementStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.MoveElementStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.MoveElementStripMenuItem.Text = "Переместить элемент";
+            this.MoveElementStripMenuItem.Click += new System.EventHandler(this.переместитьЭлементToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -270,6 +281,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripScale;
+        public System.Windows.Forms.ToolStripMenuItem MoveElementStripMenuItem;
     }
 }
 
