@@ -120,15 +120,23 @@ namespace OneNote
                     d = distance(a, b, el.x1, el.y1, (el as ElLine).x2, (el as ElLine).y2);
                     if (d < 0.01f / Zoom)
                     {
-                        selectedElement = el;
-                        form.DeleteElementMenuItem.Enabled = true;
+                        ElementWasSelected(el);
                         return true;
                     }
                 }
             }
+            ElementWasDeselected();
+            return false;
+        }
+        public void ElementWasSelected(Element _el) 
+        {
+            selectedElement = _el;
+            form.DeleteElementMenuItem.Enabled = true;
+        }
+        public void ElementWasDeselected()
+        {
             selectedElement = null;
             form.DeleteElementMenuItem.Enabled = false;
-            return false;
         }
         public void Load(String _fileName)
         {

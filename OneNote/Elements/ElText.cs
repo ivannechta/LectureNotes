@@ -4,9 +4,11 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace OneNote.Elements
 {
@@ -14,7 +16,10 @@ namespace OneNote.Elements
     {
         public float x2, y2; 
         public RichTextBox TextBox;
-        private View view;
+        private bool FlagTextBoxMoveing = false;
+        private Point OldCursorPosition = new Point();
+        private readonly View view;
+
         public ElText(ELEMENT_TYPES _t, Form1 _context,View _v) : base(_t, _context)
         {
             view = _v;
@@ -84,16 +89,47 @@ namespace OneNote.Elements
             {
                 Location = new System.Drawing.Point(_v.ElementCoord2PixelX(x1), _v.ElementCoord2PixelY(y1)),
                 Size = new System.Drawing.Size(c - a, d - b),
+                BackColor = ColorPalette.TextBG(),
+                BorderStyle = BorderStyle.FixedSingle,
             };
             TextBox.MouseDown += TextBox_MouseDown;
+            TextBox.MouseUp += TextBox_MouseUp;
+            TextBox.MouseMove += TextBox_MouseMove;
             _form.Controls.Add(TextBox);
         }
-
         private void TextBox_MouseDown(object sender, MouseEventArgs e)
         {
+            FlagTextBoxMoveing = true;
+            OldCursorPosition.X = e.X;
+            OldCursorPosition.Y = e.Y;     
+        }
+        private void TextBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            FlagTextBoxMoveing = false;
             view.selectedElement = this;
             context.DeleteElementMenuItem.Enabled = true;
             view.Draw();
+        }
+        private void TextBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (FlagTextBoxMoveing)
+            {
+                TextBox.Left += e.X - OldCursorPosition.X;
+                TextBox.Top += e.Y - OldCursorPosition.Y;
+                foreach (Element el in view.allElements.Skip(2))
+                {
+                    if (this == el)
+                    {
+                        float dx = (el as ElText).x2 - el.x1;
+                        float dy = (el as ElText).y2 - el.y1;
+                        
+                        el.x1 = view.PixelX2ElementCoord(TextBox.Left);
+                        el.y1 = view.PixelY2ElementCoord(TextBox.Top);
+                        (el as ElText).x2 = dx + el.x1;
+                        (el as ElText).y2 = dy + el.y1;
+                    }
+                }
+            }
         }
         public override void Save(FileStream _fs)
         {

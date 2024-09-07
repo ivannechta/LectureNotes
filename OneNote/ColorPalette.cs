@@ -21,13 +21,17 @@ namespace OneNote
         {
             return Color.FromArgb(255, 0, 0, 0);
         }
+        public static Color TextBG()
+        {
+            return SystemColors.Control;
+        }
         public static Color Selection()
         {
             return Color.FromArgb(255, 255, 0, 255);
         }
         public static Color BackGround()
         {
-            return SystemColors.Control; 
+            return SystemColors.Control;
         }
     }
 }
