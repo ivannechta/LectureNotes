@@ -25,7 +25,7 @@ namespace OneNote
         public Element element = null;
         public List<Element> allElements=new List<Element>();
         public Element selectedElement = null;
-        public bool allowTextBoxMoveing = false;
+        public bool flagStartMoveing = false;
 
         public View (Form1 _f)
         {
@@ -130,21 +130,11 @@ namespace OneNote
             ElementWasDeselected();
             return false;
         }
-        public void MoveElementStart() { 
-            if ((selectedElement != null) &&(allowTextBoxMoveing))
-            {       
-                (selectedElement as ElText).FlagTextBoxMoveing = true;
-            }
-        }
-        public void MoveElementStop()
+        public void ElementWasSelected(Element _el)
         {
-            if (selectedElement != null)
-            {
-                (selectedElement as ElText).FlagTextBoxMoveing = false;
-            }
-        }
-        public void ElementWasSelected(Element _el) 
-        {
+            if (selectedElement == _el) { return; } //already selected
+            ElementWasDeselected();
+
             selectedElement = _el;
             form.DeleteElementMenuItem.Enabled = true;
             if (_el.elementType==ELEMENT_TYPES.ELEMENT_TYPE_TEXT) 
@@ -155,9 +145,9 @@ namespace OneNote
         public void ElementWasDeselected()
         {
             selectedElement = null;
-            form.DeleteElementMenuItem.Enabled = false;            
+            form.DeleteElementMenuItem.Enabled = false;
             form.MoveElementStripMenuItem.Enabled = false;
-            allowTextBoxMoveing = false;
+            form.ShowStatus(form.fsm.GetName());
         }
         public void Load(String _fileName)
         {

@@ -23,7 +23,7 @@ namespace OneNote
         public Callback onEnter;
     };
 
-    internal class FSM
+    public class FSM
     {
         public FSM_STATES State = FSM_STATES.FSM_STATE_IDLE;
         private Dictionary<FSM_STATES, Instance> AllStates = new Dictionary<FSM_STATES, Instance>()
@@ -50,7 +50,7 @@ namespace OneNote
             {
                 name = "Перемещаем элемент",
                 onEnter = Stub,
-                NextPosibleStates = new List<FSM_STATES> { FSM_STATES.FSM_STATE_IDLE }
+                NextPosibleStates = new List<FSM_STATES> { FSM_STATES.FSM_STATE_IDLE, FSM_STATES.FSM_STATE_CANVAS_MOVE}
             },
             [FSM_STATES.FSM_STATE_ELEMENT_SELECT] = new Instance()
             {
@@ -90,6 +90,7 @@ namespace OneNote
         }
         public void SetState(FSM_STATES _newState)
         {
+            if (State==_newState) { return; }
             if (AllStates[State].NextPosibleStates.Contains(_newState))
             {
                 State = _newState;

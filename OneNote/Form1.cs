@@ -10,7 +10,7 @@ namespace OneNote
     {
         private static View view;
 
-        private FSM fsm=new FSM();
+        public FSM fsm=new FSM();
         Point coordMouseDown=new Point();
 
         public Form1()
@@ -38,6 +38,7 @@ namespace OneNote
             switch (fsm.GetState())
             {
                 case FSM_STATES.FSM_STATE_IDLE:
+                case FSM_STATES.FSM_STATE_ELEMENT_MOVE:
                     coordMouseDown.X = e.X; coordMouseDown.Y = e.Y;
                     fsm.SetState(FSM_STATES.FSM_STATE_CANVAS_MOVE);
                     if (view.TrySelectElement(e.X, e.Y))
@@ -172,7 +173,9 @@ namespace OneNote
 
         private void переместитьЭлементToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            view.allowTextBoxMoveing = true;
+            fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
+            fsm.SetState(FSM_STATES.FSM_STATE_ELEMENT_MOVE);
+            ShowStatus(fsm.GetName());
         }
     }
 }
