@@ -59,11 +59,7 @@ namespace OneNote.Elements
             y1 = y2 = v.PixelY2ElementCoord(_y);
         }
         public override void StopDraw(Form1 _form, View _v)
-        {
-            int a, b;
-            a = _v.ElementCoord2PixelX(x1);
-            b = _v.ElementCoord2PixelY(y1);
-        }
+        { }
         public override void Save(FileStream _fs) 
         {
             _fs.Write(BitConverter.GetBytes(x1), 0, sizeof(float));

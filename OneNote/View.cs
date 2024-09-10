@@ -107,7 +107,19 @@ namespace OneNote
         {
             float a = Math.Abs((_y2 - _y1) * _x0 - (_x2 - _x1) * _y0 + _x2 * _y1 - _y2 * _x1);
             float b = (float)Math.Sqrt((_y2 - _y1) * (_y2 - _y1) + (_x2 - _x1) * (_x2 - _x1));
-            return a / b;
+
+            float d1 = (float)Math.Sqrt((_x1 - _x0) * (_x1 - _x0) + (_y1 - _y0) * (_y1 - _y0));
+            float d2 = (float)Math.Sqrt((_x2 - _x0) * (_x2 - _x0) + (_y2 - _y0) * (_y2 - _y0));
+            float d = (float)Math.Sqrt((_x2 - _x1) * (_x2 - _x1) + (_y2 - _y1) * (_y2 - _y1));
+
+            if ((d > d1) && (d > d2)) // is perp on segment?
+            {
+                return a / b;
+            }
+            else
+            {
+                return (d1 < d2) ? d1 : d2;
+            }
         }
         public bool TrySelectElement(int _x, int _y)
         {
