@@ -1,8 +1,10 @@
-﻿using OneNote.Elements;
+﻿using Microsoft.Win32;
+using OneNote.Elements;
 using System;
 using System.Drawing;
 using System.Runtime.Remoting.Contexts;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace OneNote
 {
@@ -18,9 +20,32 @@ namespace OneNote
             InitializeComponent();
             view = new View(this);
             ShowStatus(fsm.GetName());
-            this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.Zoom);
+            this.MouseWheel += new MouseEventHandler(this.Zoom);
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length > 1)
+            {
+                if (args[1].Substring(args[1].Length - 4) == ".lnt")
+                {
+                    view.Load(args[1]);
+                }
+            }
+            RegisterExtension(args[0]);
         }
+        void RegisterExtension(string _path) 
+        {
 
+            RegistryKey registryKey = Registry.ClassesRoot.CreateSubKey(".lnt");
+            registryKey.SetValue("", "LectureNotes");
+
+            registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes");
+            registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes\\DefaultIcon");
+            registryKey.SetValue("", _path+",0");
+
+            registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes\\shell");
+            registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes\\shell\\open");
+            registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes\\shell\\open\\command");
+            registryKey.SetValue("", _path + " \"%1\"");
+        }
         private void Zoom(object sender, MouseEventArgs e)
         {
             if (e.Delta < 0) //прокрутили вниз
