@@ -48,9 +48,11 @@
             this.линияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.текстовоеПолеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteElementMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MoveElementStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.MoveElementStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileImage = new System.Windows.Forms.OpenFileDialog();
+            this.изображениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -164,7 +166,7 @@
             // сбросМасштабаToolStripMenuItem
             // 
             this.сбросМасштабаToolStripMenuItem.Name = "сбросМасштабаToolStripMenuItem";
-            this.сбросМасштабаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сбросМасштабаToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.сбросМасштабаToolStripMenuItem.Text = "Сброс масштаба";
             this.сбросМасштабаToolStripMenuItem.Click += new System.EventHandler(this.сбросМасштабаToolStripMenuItem_Click);
             // 
@@ -182,7 +184,8 @@
             // 
             this.добавитьЭлементToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.линияToolStripMenuItem,
-            this.текстовоеПолеToolStripMenuItem});
+            this.текстовоеПолеToolStripMenuItem,
+            this.изображениеToolStripMenuItem});
             this.добавитьЭлементToolStripMenuItem.Name = "добавитьЭлементToolStripMenuItem";
             this.добавитьЭлементToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.добавитьЭлементToolStripMenuItem.Text = "Добавить элемент";
@@ -212,6 +215,15 @@
             this.DeleteElementMenuItem.Text = "Удалить элемент";
             this.DeleteElementMenuItem.Click += new System.EventHandler(this.DeleteElementMenuItem_Click);
             // 
+            // MoveElementStripMenuItem
+            // 
+            this.MoveElementStripMenuItem.Enabled = false;
+            this.MoveElementStripMenuItem.Name = "MoveElementStripMenuItem";
+            this.MoveElementStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.MoveElementStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.MoveElementStripMenuItem.Text = "Переместить элемент";
+            this.MoveElementStripMenuItem.Click += new System.EventHandler(this.переместитьЭлементToolStripMenuItem_Click);
+            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.DefaultExt = "*.lnt";
@@ -223,14 +235,18 @@
             this.openFileDialog1.DefaultExt = "*.lnt";
             this.openFileDialog1.Filter = "Lecture Notes|*.lnt";
             // 
-            // MoveElementStripMenuItem
+            // openFileImage
             // 
-            this.MoveElementStripMenuItem.Enabled = false;
-            this.MoveElementStripMenuItem.Name = "MoveElementStripMenuItem";
-            this.MoveElementStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.MoveElementStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.MoveElementStripMenuItem.Text = "Переместить элемент";
-            this.MoveElementStripMenuItem.Click += new System.EventHandler(this.переместитьЭлементToolStripMenuItem_Click);
+            this.openFileImage.DefaultExt = "*.lnt";
+            this.openFileImage.Filter = "Jpeg image|*.jpg";
+            // 
+            // изображениеToolStripMenuItem
+            // 
+            this.изображениеToolStripMenuItem.Name = "изображениеToolStripMenuItem";
+            this.изображениеToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
+            this.изображениеToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.изображениеToolStripMenuItem.Text = "Изображение";
+            this.изображениеToolStripMenuItem.Click += new System.EventHandler(this.изображениеToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -282,6 +298,8 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripScale;
         public System.Windows.Forms.ToolStripMenuItem MoveElementStripMenuItem;
+        public System.Windows.Forms.OpenFileDialog openFileImage;
+        private System.Windows.Forms.ToolStripMenuItem изображениеToolStripMenuItem;
     }
 }
 

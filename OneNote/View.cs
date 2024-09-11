@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
@@ -103,7 +104,7 @@ namespace OneNote
             OffsetCenter.Y += 4.0f*(1.0f/Zoom) * 0.5f * _dy / form.Height;
             Draw();
         }
-        private float distance(float _x0, float _y0,float _x1,float _y1,float _x2,float _y2)
+        private float Distance(float _x0, float _y0,float _x1,float _y1,float _x2,float _y2)
         {
             float a = Math.Abs((_y2 - _y1) * _x0 - (_x2 - _x1) * _y0 + _x2 * _y1 - _y2 * _x1);
             float b = (float)Math.Sqrt((_y2 - _y1) * (_y2 - _y1) + (_x2 - _x1) * (_x2 - _x1));
@@ -131,7 +132,7 @@ namespace OneNote
             {
                 if (el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_LINE)
                 {
-                    d = distance(a, b, el.x1, el.y1, (el as ElLine).x2, (el as ElLine).y2);
+                    d = Distance(a, b, el.x1, el.y1, (el as ElLine).x2, (el as ElLine).y2);
                     if (d < 0.01f / Zoom)
                     {
                         ElementWasSelected(el);
@@ -149,7 +150,8 @@ namespace OneNote
 
             selectedElement = _el;
             form.DeleteElementMenuItem.Enabled = true;
-            if (_el.elementType==ELEMENT_TYPES.ELEMENT_TYPE_TEXT) 
+            if ((_el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_TEXT) ||
+                (_el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_PICTURE)) 
             {
                 form.MoveElementStripMenuItem.Enabled = true;
             }
@@ -184,6 +186,9 @@ namespace OneNote
                             case ELEMENT_TYPES.ELEMENT_TYPE_TEXT:
                                 el = new ElText(ELEMENT_TYPES.ELEMENT_TYPE_TEXT, form, this);
                                 break;
+                            case ELEMENT_TYPES.ELEMENT_TYPE_PICTURE:
+                                el = new ElImage(ELEMENT_TYPES.ELEMENT_TYPE_PICTURE, form, this);
+                                break;
                             default:
                                 
                                 break;
@@ -197,17 +202,23 @@ namespace OneNote
         }
         public void Save(String _fileName)
         {
-            using (FileStream fs = File.OpenWrite(_fileName))
+            try
             {
-                using (BinaryWriter binaryWriter = new BinaryWriter(fs))
+                using (FileStream fs = File.OpenWrite(_fileName))
                 {
-                    foreach(Element el in allElements.Skip(2))
+                    using (BinaryWriter binaryWriter = new BinaryWriter(fs))
                     {
-                        fs.Write(BitConverter.GetBytes((int)el.elementType),0,4); // Type
-                        el.Save(fs);
+                        foreach (Element el in allElements.Skip(2))
+                        {
+                            fs.Write(BitConverter.GetBytes((int)el.elementType), 0, 4); // Type
+                            el.Save(fs);
+                        }
                     }
+                    fs.Close();
                 }
-                fs.Close();
+            }
+            catch (Exception e) {
+                form.ShowStatus("Не смог сохранить в файл");
             }
         }
         public void NewProject()
@@ -218,6 +229,11 @@ namespace OneNote
                 {
                     (el as ElText).TextBox.Dispose();
                 }
+                if (el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_PICTURE)
+                {
+                    (el as ElImage).pictureBox.Dispose();
+                }
+
             }
             allElements.Clear();
             AddDecartNet();

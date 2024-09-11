@@ -130,6 +130,11 @@ namespace OneNote
                         this.Controls.Remove((el as ElText).TextBox);
                         (el as ElText).TextBox.Dispose();
                     }
+                    if (el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_PICTURE)
+                    {
+                        this.Controls.Remove((el as ElImage).pictureBox);
+                        (el as ElImage).pictureBox.Dispose();
+                    }
                     view.Draw();
                     DeleteElementMenuItem.Enabled = false;
                     return;
@@ -170,12 +175,18 @@ namespace OneNote
             view.NewProject();
             ShowStatus(fsm.GetName());
         }
-
         private void переместитьЭлементToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
             fsm.SetState(FSM_STATES.FSM_STATE_ELEMENT_MOVE);
             ShowStatus(fsm.GetName());
+        }
+        private void изображениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
+            fsm.SetState(FSM_STATES.FSM_STATE_ELEMENT_READY_DRAW);
+            ShowStatus(fsm.GetName());
+            view.element = new ElImage(ELEMENT_TYPES.ELEMENT_TYPE_PICTURE, this, view);
         }
     }
 }
