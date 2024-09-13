@@ -96,6 +96,30 @@ namespace OneNote.Elements
             TextBox.MouseMove += TextBox_MouseMove;
             _form.Controls.Add(TextBox);
         }
+        public void TextBoxSetFont()
+        {
+            FontDialog fd = new FontDialog();
+            if (fd.ShowDialog()==DialogResult.OK)
+            {
+                TextBox.SelectionFont = fd.Font;
+            }
+        }
+        public void TextBoxSetColor()
+        {
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                TextBox.SelectionColor = cd.Color;
+            }
+        }
+        public void TextBoxSetBgColor()
+        {
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                TextBox.SelectionBackColor = cd.Color;
+            }
+        }
         private void TextBox_MouseDown(object sender, MouseEventArgs e)
         {
             OldCursorPosition.X = e.X;

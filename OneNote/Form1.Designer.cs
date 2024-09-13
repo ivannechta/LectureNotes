@@ -55,6 +55,13 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileImage = new System.Windows.Forms.OpenFileDialog();
+            this.fontDialog = new System.Windows.Forms.FontDialog();
+            this.изменитьЭлементToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.линияToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.шрифтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.цветToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.цветФонаШрифтаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -184,6 +191,7 @@
             // 
             this.элементыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.добавитьЭлементToolStripMenuItem,
+            this.изменитьЭлементToolStripMenuItem,
             this.DeleteElementMenuItem,
             this.MoveElementStripMenuItem});
             this.элементыToolStripMenuItem.Name = "элементыToolStripMenuItem";
@@ -267,6 +275,45 @@
             this.openFileImage.DefaultExt = "*.lnt";
             this.openFileImage.Filter = "Jpeg image|*.jpg";
             // 
+            // изменитьЭлементToolStripMenuItem
+            // 
+            this.изменитьЭлементToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.линияToolStripMenuItem1});
+            this.изменитьЭлементToolStripMenuItem.Name = "изменитьЭлементToolStripMenuItem";
+            this.изменитьЭлементToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.изменитьЭлементToolStripMenuItem.Text = "Изменить элемент";
+            // 
+            // линияToolStripMenuItem1
+            // 
+            this.линияToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.шрифтToolStripMenuItem,
+            this.цветToolStripMenuItem,
+            this.цветФонаШрифтаToolStripMenuItem});
+            this.линияToolStripMenuItem1.Name = "линияToolStripMenuItem1";
+            this.линияToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.линияToolStripMenuItem1.Text = "Текстовое поле";
+            // 
+            // шрифтToolStripMenuItem
+            // 
+            this.шрифтToolStripMenuItem.Name = "шрифтToolStripMenuItem";
+            this.шрифтToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.шрифтToolStripMenuItem.Text = "Шрифт";
+            this.шрифтToolStripMenuItem.Click += new System.EventHandler(this.шрифтToolStripMenuItem_Click);
+            // 
+            // цветToolStripMenuItem
+            // 
+            this.цветToolStripMenuItem.Name = "цветToolStripMenuItem";
+            this.цветToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.цветToolStripMenuItem.Text = "Цвет шрифта";
+            this.цветToolStripMenuItem.Click += new System.EventHandler(this.цветToolStripMenuItem_Click);
+            // 
+            // цветФонаШрифтаToolStripMenuItem
+            // 
+            this.цветФонаШрифтаToolStripMenuItem.Name = "цветФонаШрифтаToolStripMenuItem";
+            this.цветФонаШрифтаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.цветФонаШрифтаToolStripMenuItem.Text = "Цвет фона шрифта";
+            this.цветФонаШрифтаToolStripMenuItem.Click += new System.EventHandler(this.цветФонаШрифтаToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,6 +368,13 @@
         private System.Windows.Forms.ToolStripMenuItem изображениеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem центрироватьЭкранToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem стрелкаToolStripMenuItem;
+        private System.Windows.Forms.FontDialog fontDialog;
+        private System.Windows.Forms.ToolStripMenuItem изменитьЭлементToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem линияToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem шрифтToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem цветToolStripMenuItem;
+        private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.ToolStripMenuItem цветФонаШрифтаToolStripMenuItem;
     }
 }
 

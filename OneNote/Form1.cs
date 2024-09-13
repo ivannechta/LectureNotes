@@ -164,7 +164,7 @@ namespace OneNote
                     DeleteElementMenuItem.Enabled = false;
                     return;
                 }
-            }            
+            }
         }
         private void сбросМасштабаToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -213,20 +213,60 @@ namespace OneNote
             ShowStatus(fsm.GetName());
             view.element = new ElImage(ELEMENT_TYPES.ELEMENT_TYPE_PICTURE, this, view);
         }
-
         private void центрироватьЭкранToolStripMenuItem_Click(object sender, EventArgs e)
         {
             view.OffsetCenter.X = view.OffsetCenter.Y = 0;
             view.Draw();
             ShowStatus(fsm.GetName());
         }
-
         private void стрелкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
             fsm.SetState(FSM_STATES.FSM_STATE_ELEMENT_READY_DRAW);
             ShowStatus(fsm.GetName());
             view.element = new ElArrow(ELEMENT_TYPES.ELEMENT_TYPE_ARROW, this);
+        }
+        private void шрифтToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Element el in view.allElements)
+            {
+                if (el.Equals(view.selectedElement))
+                {   
+                    if (el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_TEXT)
+                    {
+                        (el as ElText).TextBoxSetFont();
+                        return;
+                    }
+                }
+            }
+        }
+        private void цветToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Element el in view.allElements)
+            {
+                if (el.Equals(view.selectedElement))
+                {
+                    if (el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_TEXT)
+                    {
+                        (el as ElText).TextBoxSetColor();
+                        return;
+                    }
+                }
+            }
+        }
+        private void цветФонаШрифтаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Element el in view.allElements)
+            {
+                if (el.Equals(view.selectedElement))
+                {
+                    if (el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_TEXT)
+                    {
+                        (el as ElText).TextBoxSetBgColor();
+                        return;
+                    }
+                }
+            }
         }
     }
 }
