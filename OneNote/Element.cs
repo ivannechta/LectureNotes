@@ -10,6 +10,7 @@ namespace OneNote
     enum ELEMENT_TYPES
     { 
         ELEMENT_TYPE_LINE,
+        ELEMENT_TYPE_ARROW,
         ELEMENT_TYPE_TEXT,
         ELEMENT_TYPE_PICTURE,
     }

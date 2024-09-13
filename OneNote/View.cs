@@ -139,8 +139,26 @@ namespace OneNote
                         return true;
                     }
                 }
+                if (el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_ARROW)
+                {
+                    d = Distance(a, b, el.x1, el.y1, (el as ElArrow).x2, (el as ElArrow).y2);
+                    if (d < 0.01f / Zoom)
+                    {
+                        ElementWasSelected(el);
+                        return true;
+                    }
+                }
             }
             ElementWasDeselected();
+            return false;
+        }
+        bool IsMovableElement(ELEMENT_TYPES _tip)
+        {
+            if ((_tip == ELEMENT_TYPES.ELEMENT_TYPE_TEXT) ||
+                (_tip == ELEMENT_TYPES.ELEMENT_TYPE_PICTURE))
+            {
+                return true;
+            }
             return false;
         }
         public void ElementWasSelected(Element _el)
@@ -150,8 +168,7 @@ namespace OneNote
 
             selectedElement = _el;
             form.DeleteElementMenuItem.Enabled = true;
-            if ((_el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_TEXT) ||
-                (_el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_PICTURE)) 
+            if (IsMovableElement(_el.elementType))
             {
                 form.MoveElementStripMenuItem.Enabled = true;
             }
@@ -183,6 +200,9 @@ namespace OneNote
                             case ELEMENT_TYPES.ELEMENT_TYPE_LINE:
                                 el = new ElLine(ELEMENT_TYPES.ELEMENT_TYPE_LINE, form);
                             break;
+                            case ELEMENT_TYPES.ELEMENT_TYPE_ARROW:
+                                el = new ElArrow(ELEMENT_TYPES.ELEMENT_TYPE_ARROW, form);
+                                break;
                             case ELEMENT_TYPES.ELEMENT_TYPE_TEXT:
                                 el = new ElText(ELEMENT_TYPES.ELEMENT_TYPE_TEXT, form, this);
                                 break;

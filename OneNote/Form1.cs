@@ -213,5 +213,20 @@ namespace OneNote
             ShowStatus(fsm.GetName());
             view.element = new ElImage(ELEMENT_TYPES.ELEMENT_TYPE_PICTURE, this, view);
         }
+
+        private void центрироватьЭкранToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            view.OffsetCenter.X = view.OffsetCenter.Y = 0;
+            view.Draw();
+            ShowStatus(fsm.GetName());
+        }
+
+        private void стрелкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
+            fsm.SetState(FSM_STATES.FSM_STATE_ELEMENT_READY_DRAW);
+            ShowStatus(fsm.GetName());
+            view.element = new ElArrow(ELEMENT_TYPES.ELEMENT_TYPE_ARROW, this);
+        }
     }
 }

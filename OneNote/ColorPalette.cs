@@ -17,6 +17,10 @@ namespace OneNote
         {
             return Color.FromArgb(255, 0, 0, 255);
         }
+        public static Color Arrow()
+        {
+            return Color.FromArgb(255, 180, 0, 50);
+        }
         public static Color Text()
         {
             return Color.FromArgb(255, 0, 0, 0);
