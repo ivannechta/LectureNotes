@@ -33,17 +33,29 @@ namespace OneNote
         }
         void RegisterExtension(string _path) 
         {
-            RegistryKey registryKey = Registry.ClassesRoot.CreateSubKey(".lnt");
-            registryKey.SetValue("", "LectureNotes");
+            RegistryKey extension = Registry.ClassesRoot.OpenSubKey(".lnt", false);
+            if (extension != null)
+            {
+                return;
+            }
+            try
+            {
+                RegistryKey registryKey = Registry.ClassesRoot.CreateSubKey(".lnt");
+                registryKey.SetValue("", "LectureNotes");
 
-            registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes");
-            registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes\\DefaultIcon");
-            registryKey.SetValue("", _path+",0");
+                registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes");
+                registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes\\DefaultIcon");
+                registryKey.SetValue("", _path + ",0");
 
-            registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes\\shell");
-            registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes\\shell\\open");
-            registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes\\shell\\open\\command");
-            registryKey.SetValue("", _path + " \"%1\"");
+                registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes\\shell");
+                registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes\\shell\\open");
+                registryKey = Registry.ClassesRoot.CreateSubKey("LectureNotes\\shell\\open\\command");
+                registryKey.SetValue("", _path + " \"%1\"");
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Запустите программу в режиме Администратора для регистрации файлового расширения", "Недостаточно прав", MessageBoxButtons.OK);
+            }
         }
         private void Zoom(object sender, MouseEventArgs e)
         {

@@ -89,7 +89,7 @@ namespace OneNote.Elements
                 Location = new System.Drawing.Point(_v.ElementCoord2PixelX(x1), _v.ElementCoord2PixelY(y1)),
                 Size = new System.Drawing.Size(c - a, d - b),
                 BackColor = ColorPalette.TextBG(),
-                BorderStyle = BorderStyle.FixedSingle,
+                BorderStyle = BorderStyle.None,
             };
             TextBox.MouseDown += TextBox_MouseDown;
             TextBox.MouseUp += TextBox_MouseUp;

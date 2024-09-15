@@ -18,7 +18,7 @@
         
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
         -->
-        <requestedExecutionLevel level="highestAvailable" uiAccess="false" />
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
       <applicationRequestMinimum>
         <defaultAssemblyRequest permissionSetReference="Custom" />
