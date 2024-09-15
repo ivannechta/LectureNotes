@@ -61,6 +61,7 @@
     <Compile Include="ColorPalette.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="Elements\ELArrow.cs" />
+    <Compile Include="Elements\ElEllipse.cs" />
     <Compile Include="Elements\ElImage.cs" />
     <Compile Include="Elements\ElLine.cs" />
     <Compile Include="Elements\ElText.cs" />

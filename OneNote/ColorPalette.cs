@@ -21,6 +21,10 @@ namespace OneNote
         {
             return Color.FromArgb(255, 180, 0, 50);
         }
+        public static Color Ellipse()
+        {
+            return Color.FromArgb(255, 50, 50, 150);
+        }
         public static Color Text()
         {
             return Color.FromArgb(255, 0, 0, 0);

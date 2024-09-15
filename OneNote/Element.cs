@@ -13,6 +13,7 @@ namespace OneNote
         ELEMENT_TYPE_ARROW,
         ELEMENT_TYPE_TEXT,
         ELEMENT_TYPE_PICTURE,
+        ELEMENT_TYPE_ELLIPSE,
     }
     struct ElementCounter {  internal static int TotalElements = 0; }
 

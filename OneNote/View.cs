@@ -148,6 +148,14 @@ namespace OneNote
                         return true;
                     }
                 }
+                if (el.elementType == ELEMENT_TYPES.ELEMENT_TYPE_ELLIPSE)
+                {
+                    if ((el as ElEllipse).IsClickedNearEllipse(this, _x, _y))
+                    {
+                        ElementWasSelected(el);
+                        return true;
+                    }
+                }
             }
             ElementWasDeselected();
             return false;

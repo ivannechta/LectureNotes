@@ -33,7 +33,6 @@ namespace OneNote
         }
         void RegisterExtension(string _path) 
         {
-
             RegistryKey registryKey = Registry.ClassesRoot.CreateSubKey(".lnt");
             registryKey.SetValue("", "LectureNotes");
 
@@ -59,7 +58,7 @@ namespace OneNote
             ShowStatus(fsm.GetName());
         }
         private void Form1_MouseDown(object sender, MouseEventArgs e)
-        {            
+        {
             switch (fsm.GetState())
             {
                 case FSM_STATES.FSM_STATE_IDLE:
@@ -267,6 +266,14 @@ namespace OneNote
                     }
                 }
             }
+        }
+
+        private void эллипсToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fsm.SetState(FSM_STATES.FSM_STATE_IDLE);
+            fsm.SetState(FSM_STATES.FSM_STATE_ELEMENT_READY_DRAW);
+            ShowStatus(fsm.GetName());
+            view.element = new ElEllipse(ELEMENT_TYPES.ELEMENT_TYPE_ELLIPSE, this);
         }
     }
 }
