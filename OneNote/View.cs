@@ -211,6 +211,9 @@ namespace OneNote
                             case ELEMENT_TYPES.ELEMENT_TYPE_ARROW:
                                 el = new ElArrow(ELEMENT_TYPES.ELEMENT_TYPE_ARROW, form);
                                 break;
+                            case ELEMENT_TYPES.ELEMENT_TYPE_ELLIPSE:
+                                el = new ElEllipse(ELEMENT_TYPES.ELEMENT_TYPE_ELLIPSE, form);
+                                break;
                             case ELEMENT_TYPES.ELEMENT_TYPE_TEXT:
                                 el = new ElText(ELEMENT_TYPES.ELEMENT_TYPE_TEXT, form, this);
                                 break;

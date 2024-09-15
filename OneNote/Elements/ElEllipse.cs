@@ -34,7 +34,6 @@ namespace OneNote.Elements
                     pen = new Pen(ColorPalette.Line());
                 }
             }
-            Brush aBrush = (Brush)Brushes.Red;
             int a, b, c, d;
             a = v.ElementCoord2PixelX(x1); b = v.ElementCoord2PixelY(y1);
             c = v.ElementCoord2PixelX(x2); d = v.ElementCoord2PixelY(y2);
@@ -66,8 +65,7 @@ namespace OneNote.Elements
         public override void StopDraw(Form1 _form, View _v)
         { }
         public bool IsClickedNearEllipse(View v,int _x,int _y) 
-        {
-            Brush aBrush = (Brush)Brushes.Red;
+        {   
             int a, b, c, d;
             a = v.ElementCoord2PixelX(x1); b = v.ElementCoord2PixelY(y1);
             c = v.ElementCoord2PixelX(x2); d = v.ElementCoord2PixelY(y2);
