@@ -50,6 +50,7 @@
             this.стрелкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.текстовоеПолеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.изображениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.эллипсToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.изменитьЭлементToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.линияToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.шрифтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +63,8 @@
             this.openFileImage = new System.Windows.Forms.OpenFileDialog();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.эллипсToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolCoordCenter = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -73,7 +75,9 @@
             this.toolStripStatusLabel1,
             this.Status,
             this.toolStripStatusLabel2,
-            this.toolStripScale});
+            this.toolStripScale,
+            this.toolStripStatusLabel3,
+            this.toolCoordCenter});
             this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(800, 22);
@@ -243,6 +247,14 @@
             this.изображениеToolStripMenuItem.Text = "Изображение";
             this.изображениеToolStripMenuItem.Click += new System.EventHandler(this.изображениеToolStripMenuItem_Click);
             // 
+            // эллипсToolStripMenuItem
+            // 
+            this.эллипсToolStripMenuItem.Name = "эллипсToolStripMenuItem";
+            this.эллипсToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.E)));
+            this.эллипсToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.эллипсToolStripMenuItem.Text = "Эллипс";
+            this.эллипсToolStripMenuItem.Click += new System.EventHandler(this.эллипсToolStripMenuItem_Click);
+            // 
             // изменитьЭлементToolStripMenuItem
             // 
             this.изменитьЭлементToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -316,13 +328,17 @@
             this.openFileImage.DefaultExt = "*.lnt";
             this.openFileImage.Filter = "Jpeg image|*.jpg";
             // 
-            // эллипсToolStripMenuItem
+            // toolStripStatusLabel3
             // 
-            this.эллипсToolStripMenuItem.Name = "эллипсToolStripMenuItem";
-            this.эллипсToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.E)));
-            this.эллипсToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.эллипсToolStripMenuItem.Text = "Эллипс";
-            this.эллипсToolStripMenuItem.Click += new System.EventHandler(this.эллипсToolStripMenuItem_Click);
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(119, 17);
+            this.toolStripStatusLabel3.Text = "Координаты центра:";
+            // 
+            // toolCoordCenter
+            // 
+            this.toolCoordCenter.Name = "toolCoordCenter";
+            this.toolCoordCenter.Size = new System.Drawing.Size(22, 17);
+            this.toolCoordCenter.Text = "0;0";
             // 
             // Form1
             // 
@@ -386,6 +402,8 @@
         private System.Windows.Forms.ColorDialog colorDialog;
         private System.Windows.Forms.ToolStripMenuItem цветФонаШрифтаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem эллипсToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel toolCoordCenter;
     }
 }
 

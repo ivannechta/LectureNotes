@@ -74,7 +74,7 @@ namespace OneNote
             }
             foreach (Element el in allElements.Skip(2))
             {
-                el.Draw(this,selectedElement==el, false);
+                el.Draw(this, selectedElement == el, false);
             }
         }
         private void Init() 
@@ -190,7 +190,7 @@ namespace OneNote
         }
         public void Load(String _fileName)
         {
-            byte[] fileData = null;
+            byte[] fileData;
             int type;
             Element el = null;
             allElements.Clear();
@@ -206,19 +206,19 @@ namespace OneNote
                         switch ((ELEMENT_TYPES)type) 
                         {
                             case ELEMENT_TYPES.ELEMENT_TYPE_LINE:
-                                el = new ElLine(ELEMENT_TYPES.ELEMENT_TYPE_LINE, form);
+                                el = new ElLine((ELEMENT_TYPES)type, form);
                             break;
                             case ELEMENT_TYPES.ELEMENT_TYPE_ARROW:
-                                el = new ElArrow(ELEMENT_TYPES.ELEMENT_TYPE_ARROW, form);
+                                el = new ElArrow((ELEMENT_TYPES)type, form);
                                 break;
                             case ELEMENT_TYPES.ELEMENT_TYPE_ELLIPSE:
-                                el = new ElEllipse(ELEMENT_TYPES.ELEMENT_TYPE_ELLIPSE, form);
+                                el = new ElEllipse((ELEMENT_TYPES)type, form);
                                 break;
                             case ELEMENT_TYPES.ELEMENT_TYPE_TEXT:
-                                el = new ElText(ELEMENT_TYPES.ELEMENT_TYPE_TEXT, form, this);
+                                el = new ElText((ELEMENT_TYPES)type, form, this);
                                 break;
                             case ELEMENT_TYPES.ELEMENT_TYPE_PICTURE:
-                                el = new ElImage(ELEMENT_TYPES.ELEMENT_TYPE_PICTURE, form, this);
+                                el = new ElImage((ELEMENT_TYPES)type, form, this);
                                 break;
                             default:
                                 

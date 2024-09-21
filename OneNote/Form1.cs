@@ -122,6 +122,7 @@ namespace OneNote
                     view.MoveCanvas(e.X - coordMouseDown.X, e.Y - coordMouseDown.Y);
                     coordMouseDown.X = e.X;
                     coordMouseDown.Y = e.Y;
+                    ShowCenterCoord();
                     break;
                 case FSM_STATES.FSM_STATE_ELEMENT_DRAW:
                     view.element.Move(view,e.X, e.Y);
@@ -134,7 +135,12 @@ namespace OneNote
         public void ShowStatus(String _message)
         {
             this.Status.Text = _message;
-            this.toolStripScale.Text = ""+view.Zoom;
+            this.toolStripScale.Text = "" + view.Zoom;
+            ShowCenterCoord();
+        }
+        public void ShowCenterCoord()
+        {
+            this.toolCoordCenter.Text = "" + view.OffsetCenter.X.ToString("0.0") + "; " + view.OffsetCenter.Y.ToString("0.0");
         }
         private void Form1_Activated(object sender, EventArgs e)
         {
@@ -279,7 +285,6 @@ namespace OneNote
                 }
             }
         }
-
         private void эллипсToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fsm.SetState(FSM_STATES.FSM_STATE_IDLE);

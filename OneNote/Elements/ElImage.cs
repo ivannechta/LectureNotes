@@ -20,7 +20,7 @@ namespace OneNote.Elements
         public float x2, y2;
         public PictureBox pictureBox;
         private Point OldCursorPosition = new Point();
-        private readonly OneNote.View view;
+        private readonly View view;
 
         public ElImage(ELEMENT_TYPES _t, Form1 _context, View _v) : base(_t, _context)
         {
